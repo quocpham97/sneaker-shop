@@ -47,10 +47,10 @@ function App() {
       <div>
         <NavBar totalItems={cart.total_items} />
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Products products={products} onAddToCart={handleAddToCart} />
           </Route>
-          <Route exact path="/cart">
+          <Route exact path='/cart'>
             <Cart
               cart={cart}
               handleUpdateCartQty={handleUpdateCartQty}
@@ -58,8 +58,8 @@ function App() {
               handleEmptyCart={handleEmptyCart}
             />
           </Route>
-          <Route exact path="/checkout">
-            <Checkout></Checkout>
+          <Route exact path='/checkout'>
+            <Checkout cart={cart} />
           </Route>
         </Switch>
       </div>
