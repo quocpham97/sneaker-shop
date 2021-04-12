@@ -5,19 +5,10 @@ const drawerWidth = 0;
 export default makeStyles((theme) => ({
   appBar: {
     boxShadow: "none",
-    borderBottom: "1px solid rgba(0,0,0,0.12)",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
     [theme.breakpoints.up("sm")]: {
-      width: `calc(100%-${drawerWidth}px)`,
+      width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth
-    }
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none"
     }
   },
   title: {
@@ -28,6 +19,15 @@ export default makeStyles((theme) => ({
   },
   image: {
     marginRight: "10px"
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none"
+    }
+  },
+  grow: {
+    flexGrow: 1
   },
   search: {
     position: "relative",
@@ -40,7 +40,6 @@ export default makeStyles((theme) => ({
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
       width: "auto"
     }
   },
@@ -64,18 +63,6 @@ export default makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("md")]: {
       width: "20ch"
-    }
-  },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex"
-    }
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none"
     }
   }
 }));
