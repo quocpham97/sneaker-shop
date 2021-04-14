@@ -3,10 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   title: {
-    marginTop: "5%"
+    marginTop: "2%"
   },
   emptyButton: {
     minWidth: "150px",
+    color: "#ffffff",
+    backgroundColor: "#c0392b",
     [theme.breakpoints.down("xs")]: {
       marginBottom: "5px"
     },
@@ -22,7 +24,8 @@ export default makeStyles((theme) => ({
   },
   cardDetails: {
     display: "flex",
-    marginTop: "10%",
+    marginTop: "5%",
+    marginBottom: "2%",
     width: "100%",
     justifyContent: "space-between"
   }

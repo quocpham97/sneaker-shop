@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     height: "100%",
@@ -14,10 +14,16 @@ export default makeStyles(() => ({
   },
   cardActions: {
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     marginTop: "auto"
   },
   cardContent: {
     justifyContent: "space-between"
+  },
+  productName: {
+    minHeight: 40
+  },
+  productPrice: {
+    marginLeft: theme.spacing(1)
   }
 }));
