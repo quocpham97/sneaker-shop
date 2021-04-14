@@ -9,9 +9,6 @@ export default makeStyles((theme) => ({
     minWidth: "150px",
     color: "#ffffff",
     backgroundColor: "#c0392b",
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: "5px"
-    },
     [theme.breakpoints.up("xs")]: {
       marginRight: "20px"
     }
