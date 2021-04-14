@@ -24,9 +24,17 @@ export default makeStyles((theme) => ({
   },
   cardDetails: {
     display: "flex",
-    marginTop: "5%",
-    marginBottom: "2%",
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
     width: "100%",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    [theme.breakpoints.down("xs")]: {
+      display: "block"
+    }
+  },
+  subtotal: {
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(2)
+    }
   }
 }));

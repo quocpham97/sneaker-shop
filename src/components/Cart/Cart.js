@@ -31,7 +31,9 @@ function Cart({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart
         ))}
       </Grid>
       <div className={classes.cardDetails}>
-        <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
+        <Typography variant="h5" className={classes.subtotal}>
+          Subtotal: {cart.subtotal.formatted_with_symbol}
+        </Typography>
         <div>
           <Button
             className={classes.emptyButton}
@@ -64,7 +66,7 @@ function Cart({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart
   return (
     <Container>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h4">
+      <Typography className={classes.title} variant="h5">
         Your Shopping Cart
       </Typography>
       {!cart.line_items.length ? <EmptyCart /> : <FillCart />}
