@@ -5,3 +5,5 @@ export { default as Checkout } from "./CheckoutForm/Checkout/Checkout";
 export { default as AddressForm } from "./CheckoutForm/AddressForm";
 export { default as PaymentForm } from "./CheckoutForm/PaymentForm";
 export { default as Confirmation } from "./CheckoutForm/Confirmation";
+export { default as AdvertisingBanner } from "./AdvertisingBanner/AdvertisingBanner";
+export { default as Category } from "./Category/Category";

@@ -2,13 +2,20 @@ import React from "react";
 import { Grid, CircularProgress } from "@material-ui/core";
 import Product from "./Product/Product";
 import useStyles from "./styles";
+import { AdvertisingBanner, Category } from "..";
 
-function Products({ products, onAddToCart }) {
+function Products({ categories, products, onAddToCart, onSelectCategory, selectedCategory }) {
   const classes = useStyles();
 
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
+      <AdvertisingBanner />
+      <Category
+        categories={categories}
+        onSelectCategory={onSelectCategory}
+        selectedCategory={selectedCategory}
+      />
       {products.length === 0 ? (
         <div className={classes.spinner}>
           <CircularProgress style={{ color: "#2d3436" }} />

@@ -4,13 +4,30 @@ import { NavBar, Products, Cart, Checkout } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
+  const [category, setCategory] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState();
 
+  const fetchCategories = async () => {
+    const { data } = await commerce.categories.list();
+    setCategories(data);
+  };
+
+  const handleChangeCategory = (categorySlug) => {
+    setProducts([]);
+    setCategory([categorySlug]);
+  };
+
   const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
+    const { data } = await commerce.products.list({ limit: 16 });
+    setProducts(data);
+  };
+
+  const fetchProductsByCategory = async () => {
+    const { data } = await commerce.products.list({ limit: 16, category_slug: category });
     setProducts(data);
   };
 
@@ -54,9 +71,15 @@ function App() {
   };
 
   useEffect(() => {
+    fetchCategories();
     fetchProducts();
     fetchCart();
   }, []);
+
+  useEffect(() => {
+    if (category) fetchProductsByCategory();
+    // eslint-disable-next-line
+  }, [category]);
 
   return (
     <Router>
@@ -64,7 +87,13 @@ function App() {
         <NavBar totalItems={cart.total_items} />
         <Switch>
           <Route exact path="/">
-            <Products products={products} onAddToCart={handleAddToCart} />
+            <Products
+              categories={categories}
+              products={products}
+              onAddToCart={handleAddToCart}
+              onSelectCategory={handleChangeCategory}
+              selectedCategory={category}
+            />
           </Route>
           <Route exact path="/cart">
             <Cart
