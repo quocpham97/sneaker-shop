@@ -29,7 +29,10 @@ export default makeStyles((theme) => ({
   removeButton: {
     color: "#ffffff",
     backgroundColor: "#c0392b",
-    marginLeft: "auto"
+    marginLeft: "auto",
+    "&:hover": {
+      backgroundColor: "#c23616"
+    }
   },
   quantity: {
     padding: theme.spacing(0, 2)

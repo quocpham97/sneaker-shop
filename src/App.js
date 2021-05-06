@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { commerce } from "./lib/commerce";
-import { NavBar, Products, Cart, Checkout } from "./components";
+import { NavBar, Products, Cart, Checkout, DetailProduct } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -35,8 +35,8 @@ function App() {
     setCart(await commerce.cart.retrieve());
   };
 
-  const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
+  const handleAddToCart = async (productId, quantity, options) => {
+    const item = await commerce.cart.add(productId, quantity, options);
     setCart(item.cart);
   };
 
@@ -61,6 +61,8 @@ function App() {
   };
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    console.log(checkoutTokenId);
+    console.log(newOrder);
     try {
       const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
       setOrder(incomingOrder);
@@ -90,7 +92,6 @@ function App() {
             <Products
               categories={categories}
               products={products}
-              onAddToCart={handleAddToCart}
               onSelectCategory={handleChangeCategory}
               selectedCategory={category}
             />
@@ -110,6 +111,9 @@ function App() {
               onCaptureCheckout={handleCaptureCheckout}
               error={errorMessage}
             />
+          </Route>
+          <Route path="/product/:productId">
+            <DetailProduct onAddToCart={handleAddToCart} />
           </Route>
         </Switch>
       </div>

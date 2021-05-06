@@ -4,7 +4,7 @@ import Product from "./Product/Product";
 import useStyles from "./styles";
 import { AdvertisingBanner, Category } from "..";
 
-function Products({ categories, products, onAddToCart, onSelectCategory, selectedCategory }) {
+function Products({ categories, products, onSelectCategory, selectedCategory }) {
   const classes = useStyles();
 
   return (
@@ -25,7 +25,7 @@ function Products({ categories, products, onAddToCart, onSelectCategory, selecte
       <Grid container justify="center" spacing={4}>
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-            <Product product={product} onAddToCart={onAddToCart} />
+            <Product product={product} />
           </Grid>
         ))}
       </Grid>

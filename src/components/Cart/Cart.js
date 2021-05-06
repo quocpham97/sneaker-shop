@@ -7,7 +7,6 @@ import CartItem from "./CartItem/CartItem";
 
 function Cart({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart }) {
   const classes = useStyles();
-
   const EmptyCart = () => (
     <Typography variant="subtitle1">
       You have no items in your shopping cart,
@@ -40,7 +39,6 @@ function Cart({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart
             size="large"
             type="button"
             variant="contained"
-            color="secondary"
             onClick={handleEmptyCart}
           >
             Empty Cart

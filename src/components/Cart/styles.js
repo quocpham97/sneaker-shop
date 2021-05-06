@@ -11,6 +11,9 @@ export default makeStyles((theme) => ({
     backgroundColor: "#c0392b",
     [theme.breakpoints.up("xs")]: {
       marginRight: "20px"
+    },
+    "&:hover": {
+      backgroundColor: "#c23616"
     }
   },
   checkoutButton: {

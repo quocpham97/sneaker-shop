@@ -10,9 +10,10 @@ function CartItem({ item, onUpdateCartQty, onRemoveFromCart }) {
     <Card className={classes.root}>
       <CardMedia image={item.media.source} alt={item.name} className={classes.media} />
       <CardContent className={classes.cardContent}>
-        <Typography variant="body1" className={classes.productName}>
-          {item.name}
-        </Typography>
+        <div className={classes.productName}>
+          <Typography variant="body1">{item.name}</Typography>
+          <Typography variant="body1">Size: {item.selected_options[0].option_name}</Typography>
+        </div>
         <Typography variant="body1">{item.line_total.formatted_with_symbol}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>

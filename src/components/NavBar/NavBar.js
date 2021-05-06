@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useRouteMatch } from "react-router-dom";
 
 import useStyles from "./styles";
 import logo from "../../assets/commerce.png";
@@ -10,6 +10,7 @@ function NavBar({ totalItems }) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
   const location = useLocation();
+  const match = useRouteMatch("/product/:productId");
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -46,7 +47,7 @@ function NavBar({ totalItems }) {
             Sneaker Shop
           </Typography>
           <div className={classes.grow} />
-          {location.pathname === "/" && (
+          {(location.pathname === "/" || (match && match.params.productId)) && (
             <div className={classes.button}>
               <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                 <Badge badgeContent={totalItems} color="secondary">

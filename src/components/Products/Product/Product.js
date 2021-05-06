@@ -1,15 +1,22 @@
 import React from "react";
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from "@material-ui/core";
-import { AddShoppingCart } from "@material-ui/icons";
+import { Card, CardMedia, CardContent, CardActions, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import useStyles from "./styles";
 
-function Product({ product, onAddToCart }) {
+function Product({ product }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.media} image={product.media.source} title={product.name} />
+      <Link
+        to={{
+          pathname: `/product/${product.id}`
+        }}
+      >
+        <CardMedia className={classes.media} image={product.media.source} title={product.name} />
+      </Link>
+
       <CardContent>
         <div className={classes.cardContent}>
           <Typography variant="body1" className={classes.productName}>
@@ -21,14 +28,6 @@ function Product({ product, onAddToCart }) {
         <Typography variant="body1" className={classes.productPrice}>
           {product.price.formatted_with_symbol}
         </Typography>
-        <IconButton
-          aria-label="Add to card"
-          onClick={() => {
-            onAddToCart(product.id, 1);
-          }}
-        >
-          <AddShoppingCart />
-        </IconButton>
       </CardActions>
     </Card>
   );

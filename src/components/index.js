@@ -7,3 +7,4 @@ export { default as PaymentForm } from "./CheckoutForm/PaymentForm";
 export { default as Confirmation } from "./CheckoutForm/Confirmation";
 export { default as AdvertisingBanner } from "./AdvertisingBanner/AdvertisingBanner";
 export { default as Category } from "./Category/Category";
+export { default as DetailProduct } from "./DetailProduct/DetailProduct";

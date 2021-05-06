@@ -9,8 +9,11 @@ function Review({ checkoutToken }) {
       </Typography>
       <List disablePadding>
         {checkoutToken.live.line_items.map((product) => (
-          <ListItem style={{ padding: "10px 0" }} key={product.name}>
-            <ListItemText primary={product.name} secondary={`Quantity: ${product.quantity}`} />
+          <ListItem style={{ padding: "10px 0" }} key={product.id}>
+            <ListItemText
+              primary={product.name}
+              secondary={`Size: ${product.selected_options[0].option_name} - Quantity: ${product.quantity}`}
+            />
             <Typography variant="body2">{product.line_total.formatted_with_symbol}</Typography>
           </ListItem>
         ))}
