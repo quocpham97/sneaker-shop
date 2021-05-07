@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, CircularProgress, Grid, Typography } from "@material-ui/core";
+import RelatedProduct from "./RelatedProduct/RelatedProduct";
+
 import { useParams } from "react-router-dom";
 import { commerce } from "../../lib/commerce";
 
@@ -46,7 +48,7 @@ function DetailProduct({ onAddToCart }) {
   useEffect(() => {
     loadProduct();
     // eslint-disable-next-line
-  }, []);
+  }, [productId]);
 
   return (
     <main className={classes.content}>
@@ -123,6 +125,7 @@ function DetailProduct({ onAddToCart }) {
               </Button>
             </Grid>
           </Grid>
+          <RelatedProduct relatedProducts={product.related_products}></RelatedProduct>
         </div>
       ) : (
         <div className={classes.spinner}>

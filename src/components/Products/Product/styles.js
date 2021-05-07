@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
     justifyContent: "space-between"
   },
   productName: {
-    minHeight: 40
+    minHeight: 50
   },
   productPrice: {
     marginLeft: theme.spacing(1)
