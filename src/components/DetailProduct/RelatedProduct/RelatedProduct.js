@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import { Product } from "../..";
+import { Typography } from "@material-ui/core";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,8 +9,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./slick.css";
 
 import useStyles from "./styles";
-import { Product } from "../..";
-import { Typography } from "@material-ui/core";
 
 function RelatedProduct({ relatedProducts }) {
   const classes = useStyles();

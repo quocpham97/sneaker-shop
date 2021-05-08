@@ -7,7 +7,7 @@ import { commerce } from "../../lib/commerce";
 
 import useStyles from "./styles";
 
-function DetailProduct({ onAddToCart }) {
+function DetailProduct({ onAddToCart, onRefreshProducts }) {
   const classes = useStyles();
   const [product, setProduct] = useState({});
   const [size, setSize] = useState();
@@ -20,6 +20,7 @@ function DetailProduct({ onAddToCart }) {
   const loadProduct = async () => {
     const response = await commerce.products.retrieve(productId);
     setProduct(response);
+    onRefreshProducts();
   };
 
   const handleSelectSize = (value, optionId) => {
@@ -46,6 +47,7 @@ function DetailProduct({ onAddToCart }) {
   };
 
   useEffect(() => {
+    setProduct({});
     loadProduct();
     // eslint-disable-next-line
   }, [productId]);

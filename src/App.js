@@ -21,6 +21,11 @@ function App() {
     setCategory([categorySlug]);
   };
 
+  const refreshProducts = () => {
+    setProducts([]);
+    setCategory([]);
+  };
+
   const fetchProducts = async () => {
     const { data } = await commerce.products.list({ limit: 16 });
     setProducts(data);
@@ -113,7 +118,7 @@ function App() {
             />
           </Route>
           <Route path="/product/:productId">
-            <DetailProduct onAddToCart={handleAddToCart} />
+            <DetailProduct onAddToCart={handleAddToCart} onRefreshProducts={refreshProducts} />
           </Route>
         </Switch>
       </div>

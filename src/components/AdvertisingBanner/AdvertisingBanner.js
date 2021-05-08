@@ -1,6 +1,8 @@
 import React from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Slider from "react-slick";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import useStyles from "./styles";
 
@@ -14,34 +16,34 @@ function AdvertisingBanner() {
   const classes = useStyles();
 
   const settings = {
-    autoPlay: true,
-    showThumbs: false,
-    swipeable: true,
-    infiniteLoop: true,
-    emulateTouch: true,
-    showStatus: false,
-    showArrows: false,
-    interval: 5000
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    dots: true,
+    autoplaySpeed: 4000
   };
+
   return (
     <div className={classes.content}>
-      <Carousel {...settings}>
+      <Slider {...settings}>
         <div>
-          <img alt="banner-nike" src={BannerNike} />
+          <img className={classes.image} alt="banner-nike" src={BannerNike} />
         </div>
         <div>
-          <img alt="banner-adidas" src={BannerAdidas} />
+          <img className={classes.image} alt="banner-adidas" src={BannerAdidas} />
         </div>
         <div>
-          <img alt="banner-jordan" src={BannerJordan} />
+          <img className={classes.image} alt="banner-jordan" src={BannerJordan} />
         </div>
         <div>
-          <img alt="banner-new-balance" src={BannerNewBalance} />
+          <img className={classes.image} alt="banner-new-balance" src={BannerNewBalance} />
         </div>
         <div>
-          <img alt="banner-adidas-2" src={BannerAdidas2} />
+          <img className={classes.image} alt="banner-adidas-2" src={BannerAdidas2} />
         </div>
-      </Carousel>
+      </Slider>
     </div>
   );
 }
