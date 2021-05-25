@@ -36,5 +36,31 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginBottom: theme.spacing(2)
     }
+  },
+  buttons: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly"
+  },
+  buttonQuantity: {
+    minWidth: 48
+  },
+  removeButton: {
+    color: "#ffffff",
+    backgroundColor: "#c0392b",
+    marginLeft: "auto",
+    "&:hover": {
+      backgroundColor: "#c23616"
+    }
+  },
+  quantity: {
+    padding: theme.spacing(0, 1)
+  },
+  productName: {
+    margin: "auto 1rem"
+  },
+  linkProductName: {
+    textDecoration: "none",
+    color: "inherit"
   }
 }));

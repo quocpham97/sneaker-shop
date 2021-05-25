@@ -48,6 +48,9 @@ function DetailProduct({ onAddToCart, onRefreshProducts }) {
 
   useEffect(() => {
     setProduct({});
+    setSize();
+    setOptionId("");
+    setQuantity(1);
     loadProduct();
     // eslint-disable-next-line
   }, [productId]);

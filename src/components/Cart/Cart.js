@@ -1,9 +1,18 @@
 import React from "react";
-import { Container, Typography, Button, Grid } from "@material-ui/core";
+import {
+  Container,
+  Typography,
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import useStyles from "./styles";
-import CartItem from "./CartItem/CartItem";
 
 function Cart({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart }) {
   const classes = useStyles();
@@ -18,17 +27,89 @@ function Cart({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart
   );
   const FillCart = () => (
     <>
-      <Grid container spacing={3}>
-        {cart.line_items.map((item) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
-            <CartItem
-              item={item}
-              onUpdateCartQty={handleUpdateCartQty}
-              onRemoveFromCart={handleRemoveFromCart}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      <TableContainer>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Product</TableCell>
+              <TableCell align="center">Size</TableCell>
+              <TableCell align="center">Unit price</TableCell>
+              <TableCell align="center">Quantity</TableCell>
+              <TableCell align="center">Total</TableCell>
+              <TableCell align="center">Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {cart.line_items.map((item) => (
+              <TableRow key={item.name}>
+                <TableCell component="th" scope="row">
+                  <div style={{ display: "flex" }}>
+                    <Link
+                      to={{
+                        pathname: `/product/${item.product_id}`
+                      }}
+                    >
+                      <img src={item.media.source} alt={item.name} style={{ width: "100px" }} />
+                    </Link>
+
+                    <Typography className={classes.productName}>
+                      <Link
+                        to={{
+                          pathname: `/product/${item.product_id}`
+                        }}
+                        className={classes.linkProductName}
+                      >
+                        {item.name}
+                      </Link>
+                    </Typography>
+                  </div>
+                </TableCell>
+                <TableCell align="center">
+                  <Typography>{item.selected_options[0].option_name}</Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <Typography>{item.price.formatted_with_symbol}</Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <div className={classes.buttons}>
+                    <Button
+                      type="button"
+                      variant="outlined"
+                      className={classes.buttonQuantity}
+                      onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)}
+                    >
+                      -
+                    </Button>
+                    <Typography className={classes.quantity}>{item.quantity}</Typography>
+                    <Button
+                      type="button"
+                      variant="outlined"
+                      className={classes.buttonQuantity}
+                      onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)}
+                    >
+                      +
+                    </Button>
+                  </div>
+                </TableCell>
+                <TableCell align="center">
+                  <Typography>{item.line_total.formatted_with_symbol}</Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="contained"
+                    type="button"
+                    className={classes.removeButton}
+                    onClick={() => handleRemoveFromCart(item.id)}
+                  >
+                    Remove
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
       <div className={classes.cardDetails}>
         <Typography variant="h5" className={classes.subtotal}>
           Subtotal: {cart.subtotal.formatted_with_symbol}

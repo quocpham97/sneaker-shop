@@ -22,6 +22,8 @@ function AdvertisingBanner() {
     arrows: false,
     autoplay: true,
     dots: true,
+    draggable: false,
+    pauseOnHover: false,
     autoplaySpeed: 4000
   };
 
