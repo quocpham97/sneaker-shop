@@ -8,7 +8,7 @@ import {
   CircularProgress,
   Divider,
   Button,
-  CssBaseline
+  CssBaseline,
 } from "@material-ui/core";
 
 import { commerce } from "../../../lib/commerce";
