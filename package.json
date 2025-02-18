@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "npx serve@latest ./build"
+    "start": "next start"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +54,7 @@
     "typescript": "5.7.3"
   },
   "engines": {
-    "node": "20.x"
+    "node": ">=20.0.0",
+    "yarn": ">=1.22.0"
   }
 }
