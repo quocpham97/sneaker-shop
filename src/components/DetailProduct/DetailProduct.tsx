@@ -4,9 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Button, CircularProgress, Grid, Typography } from "@mui/material";
 import RelatedProduct from "./RelatedProduct/RelatedProduct";
 
-import { useParams } from "react-router-dom";
-import { commerce } from "../../lib/commerce";
-
 import useStyles from "./styles";
 
 function DetailProduct({ onAddToCart, onRefreshProducts }) {
@@ -17,13 +14,11 @@ function DetailProduct({ onAddToCart, onRefreshProducts }) {
   const [isSelectedSize, setIsSelectedSize] = useState(false);
   const [optionId, setOptionId] = useState("");
 
-  const { productId } = useParams();
-
-  const loadProduct = async () => {
-    const response = await commerce.products.retrieve(productId);
-    setProduct(response);
-    onRefreshProducts();
-  };
+  // const loadProduct = async () => {
+  //   const response = await commerce.products.retrieve(productId);
+  //   setProduct(response);
+  //   onRefreshProducts();
+  // };
 
   const handleSelectSize = (value, optionId) => {
     setSize(value);
@@ -53,9 +48,9 @@ function DetailProduct({ onAddToCart, onRefreshProducts }) {
     setSize(undefined);
     setOptionId("");
     setQuantity(1);
-    loadProduct();
+    // loadProduct();
     // eslint-disable-next-line
-  }, [productId]);
+  }, []);
 
   return (
     <main className={classes.content}>

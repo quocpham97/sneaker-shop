@@ -8,7 +8,6 @@ import {
   CardActions,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 
 import useStyles from "./styles";
 
@@ -17,17 +16,11 @@ function Product({ product }) {
 
   return (
     <Card className={classes.root}>
-      <Link
-        to={{
-          pathname: `/product/${product.id}`,
-        }}
-      >
-        <CardMedia
-          className={classes.media}
-          image={product.media.source}
-          title={product.name}
-        />
-      </Link>
+      <CardMedia
+        className={classes.media}
+        image={product.media.source}
+        title={product.name}
+      />
 
       <CardContent>
         <div className={classes.cardContent}>

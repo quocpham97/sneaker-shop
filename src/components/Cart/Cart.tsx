@@ -12,7 +12,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 
 import useStyles from "./styles";
 
@@ -26,10 +25,7 @@ function Cart({
   const EmptyCart = () => (
     <Typography variant="subtitle1">
       You have no items in your shopping cart,
-      <Link to="/" className={classes.link}>
-        start adding some
-      </Link>
-      !
+      <strong>start adding some</strong>!
     </Typography>
   );
   const FillCart = () => (
@@ -51,27 +47,14 @@ function Cart({
               <TableRow key={item.name}>
                 <TableCell component="th" scope="row">
                   <div style={{ display: "flex" }}>
-                    <Link
-                      to={{
-                        pathname: `/product/${item.product_id}`,
-                      }}
-                    >
-                      <img
-                        src={item.media.source}
-                        alt={item.name}
-                        style={{ width: "100px" }}
-                      />
-                    </Link>
+                    <img
+                      src={item.media.source}
+                      alt={item.name}
+                      style={{ width: "100px" }}
+                    />
 
                     <Typography className={classes.productName}>
-                      <Link
-                        to={{
-                          pathname: `/product/${item.product_id}`,
-                        }}
-                        className={classes.linkProductName}
-                      >
-                        {item.name}
-                      </Link>
+                      {item.name}
                     </Typography>
                   </div>
                 </TableCell>
@@ -151,8 +134,6 @@ function Cart({
             type="button"
             variant="contained"
             color="primary"
-            component={Link}
-            to="/checkout"
           >
             Checkout
           </Button>

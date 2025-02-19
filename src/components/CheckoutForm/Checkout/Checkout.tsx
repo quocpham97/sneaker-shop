@@ -13,33 +13,30 @@ import {
   CssBaseline,
 } from "@mui/material";
 
-import { commerce } from "../../../lib/commerce";
 import useStyles from "./styles";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
-import { Link, useHistory } from "react-router-dom";
 
 const steps = ["Shipping address", "Payment details"];
 
 function Checkout({ cart, order, onCaptureCheckout, error }) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
-  const [checkoutToken, setCheckoutToken] = useState(null);
+  const [checkoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
   const [isFinished, setIsFinished] = useState(false);
-  const history = useHistory();
 
   useEffect(() => {
     if (cart.id) {
       const generateToken = async () => {
         try {
-          const token = await commerce.checkout.generateToken(cart.id, {
-            type: "cart",
-          });
-          setCheckoutToken(token);
+          // const token = await commerce.checkout.generateToken(cart.id, {
+          //   type: "cart",
+          // });
+          // setCheckoutToken(token);
         } catch (error) {
           console.log(error);
-          if (activeStep !== steps.length) history.push("/");
+          if (activeStep !== steps.length) return; //history.push("/");
         }
       };
       generateToken();
@@ -88,7 +85,7 @@ function Checkout({ cart, order, onCaptureCheckout, error }) {
           </Typography>
         </div>
         <br />
-        <Button component={Link} to="/" variant="outlined" type="button">
+        <Button variant="outlined" type="button">
           Back to Home
         </Button>
       </>
@@ -99,7 +96,7 @@ function Checkout({ cart, order, onCaptureCheckout, error }) {
           <Divider className={classes.divider} />
         </div>
         <br />
-        <Button component={Link} to="/" variant="outlined" type="button">
+        <Button variant="outlined" type="button">
           Back to Home
         </Button>
       </>
@@ -113,7 +110,7 @@ function Checkout({ cart, order, onCaptureCheckout, error }) {
     <>
       <Typography variant="h5">Error: {error}</Typography>
       <br />
-      <Button component={Link} to="/" variant="outlined" type="button">
+      <Button variant="outlined" type="button">
         Back to Home
       </Button>
     </>;

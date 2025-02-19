@@ -10,9 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
-import { Link } from "react-router-dom";
-
-import { commerce } from "../../lib/commerce";
 
 import FormInput from "./CustomTextField";
 
@@ -25,37 +22,37 @@ function AddressForm({ checkoutToken, next }) {
   const [shippingOption, setShippingOption] = useState("");
   const methods = useForm();
 
-  const fetchShippingCountries = async (checkoutTokenId) => {
-    const { countries } = await commerce.services.localeListShippingCountries(
-      checkoutTokenId
-    );
-    setShippingCountries(countries);
-    setShippingCountry(Object.keys(countries)[0]);
-  };
+  // const fetchShippingCountries = async (checkoutTokenId) => {
+  //   const { countries } = await commerce.services.localeListShippingCountries(
+  //     checkoutTokenId
+  //   );
+  //   setShippingCountries(countries);
+  //   setShippingCountry(Object.keys(countries)[0]);
+  // };
 
-  const fetchSubdivisions = async (countryCode) => {
-    const { subdivisions } = await commerce.services.localeListSubdivisions(
-      countryCode
-    );
-    setShippingSubdivisions(subdivisions);
-    setShippingSubdivision(Object.keys(subdivisions)[0]);
-  };
+  // const fetchSubdivisions = async (countryCode) => {
+  //   const { subdivisions } = await commerce.services.localeListSubdivisions(
+  //     countryCode
+  //   );
+  //   setShippingSubdivisions(subdivisions);
+  //   setShippingSubdivision(Object.keys(subdivisions)[0]);
+  // };
 
-  const fetchShippingOptions = async (
-    checkoutTokenId,
-    country,
-    region = null
-  ) => {
-    const options = await commerce.checkout.getShippingOptions(
-      checkoutTokenId,
-      { country, region }
-    );
-    setShippingOptions(options);
-    setShippingOption(options[0].id);
-  };
+  // const fetchShippingOptions = async (
+  //   checkoutTokenId,
+  //   country,
+  //   region = null
+  // ) => {
+  //   const options = await commerce.checkout.getShippingOptions(
+  //     checkoutTokenId,
+  //     { country, region }
+  //   );
+  //   setShippingOptions(options);
+  //   setShippingOption(options[0].id);
+  // };
 
   useEffect(() => {
-    fetchShippingCountries(checkoutToken.id);
+    // fetchShippingCountries(checkoutToken.id);
     return () => {
       setShippingCountries([]);
     };
@@ -63,7 +60,7 @@ function AddressForm({ checkoutToken, next }) {
   }, []);
 
   useEffect(() => {
-    if (shippingCountry) fetchSubdivisions(shippingCountry);
+    if (shippingCountry) return; //fetchSubdivisions(shippingCountry);
     return () => {
       setShippingSubdivisions([]);
     };
@@ -71,14 +68,14 @@ function AddressForm({ checkoutToken, next }) {
 
   useEffect(() => {
     if (shippingSubdivision)
-      fetchShippingOptions(
-        checkoutToken.id,
-        shippingCountry,
-        shippingSubdivision
-      );
-    return () => {
-      setShippingOptions([]);
-    };
+      // fetchShippingOptions(
+      //   checkoutToken.id,
+      //   shippingCountry,
+      //   shippingSubdivision
+      // );
+      return () => {
+        setShippingOptions([]);
+      };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shippingSubdivision]);
 
@@ -162,9 +159,7 @@ function AddressForm({ checkoutToken, next }) {
           </Grid>
           <br />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Button component={Link} to="/cart" variant="outlined">
-              Back to Cart
-            </Button>
+            <Button variant="outlined">Back to Cart</Button>
             <Button type="submit" variant="contained" color="primary">
               Next
             </Button>
